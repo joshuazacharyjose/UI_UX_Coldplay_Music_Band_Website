@@ -1,0 +1,467 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap');
+
+:root{
+  --accent1: #ff2a89;
+  --accent2: #00eaff;
+  --bg-dark: #0a0a1a;
+  --text-light: #fff;
+}
+
+*{margin:0; padding:0; box-sizing:border-box;}
+body{
+  font-family:'Poppins',sans-serif;
+  color:var(--text-light);
+  background: var(--bg-dark);
+  scroll-behavior: smooth;
+}
+
+/* Cosmic Background */
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(10,10,26,0.9)),
+    url('download.jpg') center/cover fixed;
+  z-index:-1;
+}
+
+/* Navbar */
+header{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:transparent;
+  transition:0.3s;
+  z-index:1000;
+}
+header.scrolled{
+  background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(5px);
+}
+.logo{
+  font-size:1.5rem;
+  font-weight:800;
+  color:var(--accent2);
+}
+nav a{
+  color:var(--text-light);
+  margin-left:20px;
+  text-decoration:none;
+  transition:0.3s;
+}
+nav a:hover{
+  color:var(--accent1);
+}
+
+/* Sections */
+section{
+  padding:100px 40px;
+  text-align:center;
+}
+.section-title{
+  font-size:2.5rem;
+  color:var(--accent2);
+  margin-bottom:40px;
+}
+
+/* Hero */
+.hero{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+.hero h1{
+  font-size:4rem;
+  color:var(--accent1);
+  text-shadow:0 0 20px var(--accent1);
+}
+.hero p{
+  margin:20px 0;
+  font-size:1.2rem;
+}
+.btn{
+  padding:12px 30px;
+  border-radius:30px;
+  border:none;
+  background:var(--accent2);
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+.btn:hover{
+  background:var(--accent1);
+  color:#fff;
+}
+
+/* Album Grid */
+.album-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  gap:20px;
+}
+.album-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:10px;
+}
+.album-card img{
+  width:100%;
+  display:block;
+  transition:0.4s;
+}
+.album-info{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  background:rgba(0,0,0,0.7);
+  padding:10px;
+  transform:translateY(100%);
+  transition:0.4s;
+}
+.album-card:hover img{
+  transform:scale(1.1);
+}
+.album-card:hover .album-info{
+  transform:translateY(0);
+}
+
+/* Member Grid Flip */
+.member-grid{
+  display:grid;
+  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  perspective:1000px;
+}
+.member-card{
+  position:relative;
+  width:100%;
+  height:280px;
+  transform-style:preserve-3d;
+  transition:transform 0.8s;
+}
+.member-card:hover{
+  transform:rotateY(180deg);
+}
+.member-front, .member-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:10px;
+}
+.member-front{
+  background-size:cover;
+  background-position:center;
+}
+.member-back{
+  background:rgba(0,0,0,0.8);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transform:rotateY(180deg);
+  padding:20px;
+}
+
+/* Contact Form */
+.contact-form{
+  max-width:500px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+.contact-form input, .contact-form textarea{
+  padding:12px;
+  border:none;
+  border-radius:5px;
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+.contact-form input:focus, .contact-form textarea:focus{
+  outline:2px solid var(--accent2);
+}
+footer{
+  text-align:center;
+  padding:20px;
+  background:rgba(0,0,0,0.4);
+}
+/* Video Section with Background */
+.video-section {
+  position: relative;
+  width: 100%;
+  height: 80vh; /* adjust height as needed */
+  overflow: hidden;
+}
+
+.video-section video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+.video-overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: white;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.3); /* slight overlay for readability */
+}
+
+.video-overlay h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--accent2);
+}
+
+.video-overlay p {
+  font-size: 1.2rem;
+}
+.audio-btn {
+  position: absolute;       /* take it out of normal flow */
+  bottom: 10px;              /* distance from bottom of the album card */
+  left: 50%;                 /* center horizontally */
+  transform: translateX(-50%);
+  z-index: 5;                /* above overlays */
+  background: var(--accent2);
+  color: #000;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  pointer-events: auto;      /* stay clickable */
+}
+
+.audio-btn:hover {
+  background: var(--accent1);
+  color: #fff;
+  transform: translateX(-50%) scale(1.05); /* keep center while scaling */
+}
+
+.album-card {
+  position: relative;        /* needed for absolute positioning of button */
+  padding-bottom: 50px;      /* leave room so button isn't cut off */
+}
+
+.album-info {
+  pointer-events: none;      /* so overlay doesn't block the button click */
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsive columns */
+  gap: 15px;
+  max-width: 1000px;  /* optional: gallery container width limit */
+  margin: auto;       /* center the gallery */
+}
+
+.gallery-grid img {
+  width: 100%;           /* take full width of the column */
+  height: 250px;         /* fixed height for uniformity */
+  object-fit: cover;     /* crop instead of stretching */
+  border-radius: 10px;   /* smooth corners */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05); /* zoom effect on hover */
+}
+.merch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* responsive columns */
+  gap: 20px;
+  max-width: 900px; /* optional width limit */
+  margin: auto;
+  padding-top: 10px;
+}
+
+.merch-grid .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(0,0,0,0.4);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.merch-grid img {
+  width: 100%;
+  max-width: 200px; /* limit max width */
+  height: 200px;    /* fixed height for uniformity */
+  object-fit: contain; /* preserve aspect ratio without cropping */
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.merch-grid p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent2);
+  margin-bottom: 10px;
+}
+
+.merch-grid .btn {
+  padding: 8px 24px;
+  border-radius: 24px;
+  font-weight: 600;
+  background: var(--accent1);
+  color: #fff;
+  box-shadow: 0 0 15px var(--accent1);
+  transition: background 0.3s;
+  text-decoration: none;
+}
+
+.merch-grid .btn:hover {
+  background: var(--accent2);
+  color: #000;
+  box-shadow: 0 0 20px var(--accent2);
+}
+/* Newsletter Section */
+#newsletter {
+  background: linear-gradient(145deg, rgba(0, 234, 255, 0.08), rgba(255, 42, 137, 0.08));
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.newsletter-content {
+  max-width: 600px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+}
+
+.newsletter-text {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: var(--text-light);
+}
+
+.newsletter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 25px;
+  flex: 1 1 250px;
+  font-size: 1rem;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.newsletter-form input[type="email"]:focus {
+  background: rgba(255, 255, 255, 0.25);
+  outline: 2px solid var(--accent2);
+}
+
+.newsletter-form .btn {
+  flex: 0 0 auto;
+  font-size: 1.05rem;
+  padding: 12px 25px;
+  border-radius: 25px;
+}
+
+#newsletter small {
+  display: block;
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .newsletter-form {
+    flex-direction: column;
+  }
+  .newsletter-form .btn {
+    width: 100%;
+  }
+}
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* Keep your existing styles */
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  opacity: 0.35;         /* Adjust the opacity to make video transparent */
+  z-index: 0;            /* Behind the hero content */
+  pointer-events: none;  /* So it doesn’t block clicks on buttons/text */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;            /* Above the video */
+  /* Your existing hero-content styles */
+}
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 24px;               /* space between icons */
+  margin-bottom: 14px;     /* space between icons and copyright text */
+}
+
+.footer-icon {
+  width: 36px;             /* optimal icon size */
+  height: 36px;
+  filter: brightness(100%);
+  transition: filter 0.3s;
+  cursor: pointer;
+}
+
+.footer-icon:hover {
+  filter: brightness(70%);
+}
+
+.footer-content p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+}
